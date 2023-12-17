@@ -1,18 +1,19 @@
 fn median(a: Vec<f32>) -> Option<f32> {
-    let length = a.len();
-    let half = length/2;
-    match length {
+    match a.len() {
         0 => None,
-        1 => Some(a[0]),
         _ => {
+            let length = a.len();
+            let half = length/2;
             let mut copy: Vec<f32> = a.clone();
             copy.sort_by(|a, b| a.partial_cmp(b).unwrap());
+
             match length % 2 == 0 {
                 true => {
-                    let h = copy[half];
-                    let n = copy[half-1];
-                    Some((h+n)/2.0)
+                    let x = copy[half];
+                    let y = copy[half-1];
+                    Some((x+y) / 2.0)
                 },
+
                 false => Some(copy[half])
             }
         }
